@@ -38,6 +38,7 @@ module Locomotive
         end
 
         def set_default_raw_template_if_layout
+		  return true if self.raw_template.present?	
           if self.layout
             self.raw_template = %({% extends "#{self.layout.fullpath}" %})
           elsif self.layout_id == 'parent'
