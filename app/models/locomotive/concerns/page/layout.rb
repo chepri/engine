@@ -30,15 +30,16 @@ module Locomotive
         private
 
         def set_default_raw_template
-          if self.allow_layout?
-            set_default_raw_template_if_layout
-          else
-            set_default_raw_template_if_no_layout
-          end
+			if !self.raw_template.present?
+				if self.allow_layout?
+				  set_default_raw_template_if_layout
+				else
+				  set_default_raw_template_if_no_layout
+				end
+			end
         end
 
         def set_default_raw_template_if_layout
-		  return true if self.raw_template.present?	
           if self.layout
             self.raw_template = %({% extends "#{self.layout.fullpath}" %})
           elsif self.layout_id == 'parent'
@@ -47,8 +48,7 @@ module Locomotive
         end
 
         def set_default_raw_template_if_no_layout
-          return true if self.raw_template.present?
-
+          
           self.raw_template = if self.index? || !self.site.is_default_locale?(::Mongoid::Fields::I18n.locale)
             '' # need it by Steam to get the template in the default locale
           else
