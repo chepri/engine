@@ -5,11 +5,11 @@ source "https://rubygems.org"
 
 gemspec # Include gemspec dependencies
 
-gem 'sass-rails',   '~> 5.0.1'
-gem 'coffee-rails', '~> 4.1.0'
-gem 'uglifier',     '>= 2.5.3'
+gem 'sass-rails'
+gem 'coffee-rails'
+gem 'uglifier'   
 
-gem 'coveralls',    '~> 0.7.2', require: false
+gem 'coveralls'
 
 group :test, :development do
   gem 'rspec-rails', '~> 3.2.1' #~> 2.14.2' # In order to have rspec tasks and generators
